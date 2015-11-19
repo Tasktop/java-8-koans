@@ -20,30 +20,42 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.tasktop.koans.java8;
+package com.tasktop.koans.java8.test;
 
+import static org.junit.Assert.assertEquals;
+
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite.SuiteClasses;
 
-import com.tasktop.koans.KoanSuiteRunner;
-import com.tasktop.koans.java8.test.AboutDateTimeAPI;
-import com.tasktop.koans.java8.test.AboutDefaultMethods;
-import com.tasktop.koans.java8.test.AboutLambdas;
-import com.tasktop.koans.java8.test.AboutNashorn;
-import com.tasktop.koans.java8.test.AboutOptionals;
-import com.tasktop.koans.java8.test.AboutParallelStreams;
-import com.tasktop.koans.java8.test.AboutStreams;
+import com.tasktop.koans.KoanRunner;
 
-@RunWith(KoanSuiteRunner.class)
-@SuiteClasses({ //
-		AboutLambdas.class, //
-		AboutDefaultMethods.class, //
-		AboutStreams.class, //
-		AboutParallelStreams.class, //
-		AboutDateTimeAPI.class, //
-		AboutOptionals.class, //
-		AboutNashorn.class, //
-})
-public class Java8KoansSuite {
+@RunWith(KoanRunner.class)
+public class AboutNashorn {
+
+	@Test
+	public void evaludateScript() throws ScriptException {
+		ScriptEngineManager engineManager = new ScriptEngineManager();
+		ScriptEngine engine = engineManager.getEngineByName("nashorn");
+
+		Object result = engine.eval("1 + 1;");
+
+		assertEquals(2, result);
+	}
+
+	@Test
+	public void registerAndExecuteFunction() throws ScriptException, NoSuchMethodException {
+		ScriptEngineManager engineManager = new ScriptEngineManager();
+		ScriptEngine engine = engineManager.getEngineByName("nashorn");
+
+		engine.eval("function sayHello() { return 'Hello' };");
+		Object result = ((Invocable) engine).invokeFunction("sayHello");
+
+		assertEquals("Hello", result);
+	}
 
 }

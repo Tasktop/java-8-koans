@@ -20,30 +20,57 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.tasktop.koans.java8;
+package com.tasktop.koans.java8.test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Optional;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite.SuiteClasses;
 
-import com.tasktop.koans.KoanSuiteRunner;
-import com.tasktop.koans.java8.test.AboutDateTimeAPI;
-import com.tasktop.koans.java8.test.AboutDefaultMethods;
-import com.tasktop.koans.java8.test.AboutLambdas;
-import com.tasktop.koans.java8.test.AboutNashorn;
-import com.tasktop.koans.java8.test.AboutOptionals;
-import com.tasktop.koans.java8.test.AboutParallelStreams;
-import com.tasktop.koans.java8.test.AboutStreams;
+import com.tasktop.koans.KoanRunner;
 
-@RunWith(KoanSuiteRunner.class)
-@SuiteClasses({ //
-		AboutLambdas.class, //
-		AboutDefaultMethods.class, //
-		AboutStreams.class, //
-		AboutParallelStreams.class, //
-		AboutDateTimeAPI.class, //
-		AboutOptionals.class, //
-		AboutNashorn.class, //
-})
-public class Java8KoansSuite {
+@RunWith(KoanRunner.class)
+public class AboutOptionals {
+
+	public static class Person {
+
+		String name;
+
+		String interests;
+
+		public Person(String name, Optional<String> interests) {
+			this.name = name;
+			this.interests = interests.orElse(null);
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public Optional<String> getInterests() {
+			return Optional.ofNullable(interests);
+		}
+
+	}
+
+	@Test
+	public void optionalsGiveYouSemantic() {
+		Person bob = new Person("Bob", Optional.of("Longboarding"));
+
+		boolean bobHasInteresets = bob.getInterests().isPresent();
+
+		assertThat(bobHasInteresets).isTrue();
+	}
+
+	@Test
+	public void optionalsAreOptional() {
+		Optional<String> optional = Optional.of("b");
+
+		String value = optional.orElse("b");
+
+		assertThat(value).isEqualTo("b");
+	}
 
 }

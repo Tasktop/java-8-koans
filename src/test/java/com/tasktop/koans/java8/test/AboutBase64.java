@@ -20,30 +20,34 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.tasktop.koans.java8;
+package com.tasktop.koans.java8.test;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Base64;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite.SuiteClasses;
 
-import com.tasktop.koans.KoanSuiteRunner;
-import com.tasktop.koans.java8.test.AboutDateTimeAPI;
-import com.tasktop.koans.java8.test.AboutDefaultMethods;
-import com.tasktop.koans.java8.test.AboutLambdas;
-import com.tasktop.koans.java8.test.AboutNashorn;
-import com.tasktop.koans.java8.test.AboutOptionals;
-import com.tasktop.koans.java8.test.AboutParallelStreams;
-import com.tasktop.koans.java8.test.AboutStreams;
+import com.tasktop.koans.KoanRunner;
 
-@RunWith(KoanSuiteRunner.class)
-@SuiteClasses({ //
-		AboutLambdas.class, //
-		AboutDefaultMethods.class, //
-		AboutStreams.class, //
-		AboutParallelStreams.class, //
-		AboutDateTimeAPI.class, //
-		AboutOptionals.class, //
-		AboutNashorn.class, //
-})
-public class Java8KoansSuite {
+@RunWith(KoanRunner.class)
+public class AboutBase64 {
+
+	@Test
+	public void encodeToBase64() {
+		byte[] encoded = Base64.getEncoder().encode("my-string".getBytes());
+
+		String myString = new String(encoded);
+		assertEquals("bXktc3RyaW5n", myString);
+	}
+
+	@Test
+	public void decodeFromBase64() {
+		byte[] decoded = Base64.getDecoder().decode("bXktc3RyaW5n".getBytes());
+
+		String myString = new String(decoded);
+		assertEquals("my-string", myString);
+	}
 
 }
