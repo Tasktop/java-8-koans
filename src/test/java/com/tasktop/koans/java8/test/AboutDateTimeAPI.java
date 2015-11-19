@@ -29,7 +29,12 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
@@ -189,6 +194,22 @@ public class AboutDateTimeAPI {
 		assertThat(saturday.getYear()).isEqualTo(2015);
 		assertThat(saturday.getMonthValue()).isEqualTo(11);
 		assertThat(saturday.getDayOfMonth()).isEqualTo(21);
+	}
+
+	@Test
+	public void java8_useFixedOffsetsForTimeZones() {
+		// FIXME: I wonder how many hours we need to pass in to have 28800 seconds
+		OffsetDateTime date = OffsetDateTime.of(2000, 11, 23, 14, 14, 14, 14, ZoneOffset.ofHours(-1));
+
+		assertThat(date.getOffset().get(ChronoField.OFFSET_SECONDS)).isEqualTo(28800);
+	}
+
+	@Test
+	public void java8_useZoneIdsForTimeZones() {
+		ZonedDateTime berlin = ZonedDateTime.now(ZoneId.of("")); // FIXME: How do we find out the ZoneIf of Berlin?
+		ZonedDateTime vancouver = ZonedDateTime.now(ZoneId.of("Canada/Pacific"));
+
+		assertThat(berlin.isBefore(vancouver)).isTrue();
 	}
 
 }
