@@ -38,7 +38,7 @@ import com.tasktop.koans.KoanRunner;
 public class AboutNashorn {
 
 	@Test
-	public void evaludateScript() throws ScriptException {
+	public void evaluateScript() throws ScriptException {
 		ScriptEngineManager engineManager = new ScriptEngineManager();
 		ScriptEngine engine = engineManager.getEngineByName("nashorn");
 
