@@ -26,6 +26,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 import com.tasktop.koans.KoanSuiteRunner;
+import com.tasktop.koans.java8.test.AboutBase64;
 import com.tasktop.koans.java8.test.AboutDateTimeAPI;
 import com.tasktop.koans.java8.test.AboutDefaultMethods;
 import com.tasktop.koans.java8.test.AboutLambdas;
@@ -43,6 +44,7 @@ import com.tasktop.koans.java8.test.AboutStreams;
 		AboutDateTimeAPI.class, //
 		AboutOptionals.class, //
 		AboutNashorn.class, //
+		AboutBase64.class, //
 })
 public class Java8KoansSuite {
 

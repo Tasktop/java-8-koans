@@ -59,12 +59,13 @@ public class AboutDefaultMethods {
 		List<Integer> numbers = Lists.newArrayList(1, 1, 1, 1, 1);
 		LongAdder adder = new LongAdder();
 
-		numbers.forEach(number -> adder.add(number));
+		numbers.forEach(number -> {
+		}); // FIXME: add the number to the adder
 
 		assertThat(adder.sum()).isEqualTo(5);
 	}
 
-	private static class Tasktopian {
+	public static class Tasktopian {
 
 		private final String name;
 
@@ -131,7 +132,10 @@ public class AboutDefaultMethods {
 				new Tasktopian("Mary", "Senior Engineer"), //
 				new Tasktopian("Bob", "Designer"));
 
-		Collections.sort(list, Comparator.comparing(Tasktopian::getName).thenComparing(Tasktopian::getRole));
+		// FIXME: take a look the the comparing static method on Comparator. Pass in the method reference for getName.
+		// This creates one comparator. Append another one by using the default method thenComparing and use the getRole
+		// method for comparing.
+		Collections.sort(list, null);
 
 		assertThat(list).isEqualTo(Lists.newArrayList(new Tasktopian("Bob", "Designer"), //
 				new Tasktopian("Bob", "Engineer"), //
@@ -170,7 +174,8 @@ public class AboutDefaultMethods {
 	public void java8_removeListElement() {
 		List<String> list = Lists.newArrayList("a", "b", "c", "d", "e");
 
-		list.removeIf(element -> "d".equals(element));
+		// FIXME: take a look at the removeIf method and pass in a predicate the is only true if the element is "d"
+		list.removeIf(null);
 
 		assertThat(list).isEqualTo(Lists.newArrayList("a", "b", "c", "e"));
 	}
@@ -209,8 +214,8 @@ public class AboutDefaultMethods {
 
 		@Override
 		public String print() {
-			// Concatenate both super.print() calls here. Start with Printable_A.super.print()
-			return Printable_A.super.print() + Printable_B.super.print();
+			// FIXME:  Concatenate both super.print() calls here. Start with Printable_A.super.print()
+			return null;
 		}
 
 	}
