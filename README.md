@@ -16,4 +16,4 @@ Clone the repository and import the project called "java-8-koans". Please note t
 To enable the ansi colors like in the screenshot above you need to add the `-Denable.ansi=true` property when launching your test suite. To get these nice ansi colors within Eclipse you can install the nice [ansi-econsole](https://github.com/mihnita/ansi-econsole).
 
 ## License
-The code is published under the terms of the MIT License.
+All code in this repository is published under terms of the [Apache 2.0 Software License](http://www.apache.org/licenses/LICENSE-2.0).
