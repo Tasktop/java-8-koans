@@ -140,7 +140,7 @@ public class AboutDateTimeAPI {
 
 	@Test
 	public void java8_getNowWithSpecificClock() {
-		Clock clock = null; // FIXME: create a clock that start at the epoch and uses the sytem timezone
+		Clock clock = null; // FIXME: create a clock that start at the epoch and uses the system timezone.
 
 		LocalDateTime now = LocalDateTime.now(clock);
 
